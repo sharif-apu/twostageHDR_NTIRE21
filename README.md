@@ -21,8 +21,8 @@ Virtual environment (optional)
 # Installation
 **Please consider using a virtual environment to continue the installation process.**
 ```
-git clone https://github.com/sharif-apu/LDR2HDR_NTIRE21.git
-cd LDR2HDR_NTIRE21
+git clone https://github.com/sharif-apu/twostageHDR_NTIRE21.git
+cd twostageHDR_NTIRE21
 pip install -r requirement.txt
 ```
 # Training
