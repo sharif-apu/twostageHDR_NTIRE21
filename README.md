@@ -1,4 +1,4 @@
-# Deep single-shot LDR to HDR
+# Two-satge LDR to HDR Image Reconstruction
 
 
 # Prerequisites
@@ -16,9 +16,25 @@ git clone https://github.com/sharif-apu/LDR2HDR_NTIRE21.git
 cd LDR2HDR_NTIRE21
 pip install -r requirement.txt
 ```
+# Training
+To download the training images please visit the following link: **[[Click Here](https://competitions.codalab.org/competitions/28161#participate)]** and extract the zip files in common directory.</br> 
+The original paper used image patches from HdM HDR dataset. To extract image patches please execute processHDMDHR.py script from the root directory as follows:
+
+```python processHDMDHR.py -r path/to/HdM/root/ -t path/to/save/patch -p 256```
+</br> Here **-r** flag defines your root directory of the HdM HDR training samples, **-s** flag defines the directory where patches should be saved, and **-p** flag defines the patch size</br>
+
+</br> After extracting patch please execute the following commands to start training:
+
+```python main.py -ts -e X -b Y```
+To specify your trining images path, go to mainModule/config.json and update "trainingImagePath" entity. </br>You can specify the number of epoch with **-e** flag (i.e., -e 5) and number of images per batch with **-b** flag (i.e., -b 24).</br>
+
+*Please Note: The provided code aims to train only with medium exposure frames. To train with short/long exposure frames, you need to modify the customDataset and main files.*
+
+**For transfer learning execute:**</br>
+```python main.py -tr -e -b ```
 
 # Testing
-
+The provided weights are trained as per rule of NTIRE21 HDR challange (single frame). To download the testing images please visit the following link: **[[Click Here](https://competitions.codalab.org/competitions/28161#participate)]**
 
 **To inference with custom setting execute the following command:**</br>
 ```python main.py -i -s path/to/inputImages -d path/to/outputImages ``` </br>
