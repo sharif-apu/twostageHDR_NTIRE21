@@ -45,8 +45,6 @@ class twostageHDR:
         self.imageW = int(config['imageW'])
         self.inputC = int(config['inputC'])
         self.outputC = int(config['outputC'])
-        self.scalingFactor = int(config['scalingFactor'])
-        self.binnigFactor = int(config['binnigFactor'])
         self.totalEpoch = int(config['epoch'])
         self.interval = int(config['interval'])
         self.learningRate = float(config['learningRate'])
