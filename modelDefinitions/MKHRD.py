@@ -15,17 +15,11 @@ class ResMKHDR(nn.Module):
         self.norm1 =  nn.BatchNorm2d(features)
 
 
-        block1 = []
         self.block1 = RRDB(features)
-        self.attention1 = SELayer(features)
         self.attentionSpatial1 = SpatialAttentionBlock(features)
-        self.noiseGate1 = nn.Conv2d(features, features, 1,1,0)
        
-        block2 = []
 
         self.block2 = RRDB(features)
-        self.noiseGate2 = nn.Conv2d(features, features, 1,1,0)
-        self.attention2 = SELayer(features)
         self.attentionSpatial2 = SpatialAttentionBlock(features)
 
         self.convOut = nn.Conv2d(features,3,1,1)
@@ -68,16 +62,11 @@ class HDRRangeNet(nn.Module):
         super(HDRRangeNet, self).__init__()
         #print("Model 2")
         self.inpConv = nn.Conv2d(3,features,3,1,1)
-        #self.inpLum = nn.Conv2d(3,features,3,1,1)
-        #self.mk1 =  multiKernelBlock(features, features)
         self.norm1 =  nn.BatchNorm2d(features)
 
         self.blockG = RRDB(features, mFactor=0.5)
-        self.attention = SELayer(features)
         self.attentionSpatial = SpatialAttentionBlock(features)
-        self.noiseGate1 = nn.Conv2d(features, features, 1,1,0)
 
-        self.block1 = RRDB(features, mFactor=0.5)
 
         self.convOut = nn.Conv2d(features,3,1,1)
         
