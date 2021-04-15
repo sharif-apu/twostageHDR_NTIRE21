@@ -51,7 +51,7 @@ To specify your trining images path, go to mainModule/config.json and update "tr
 # Testing
 The provided weights are trained as per rule of NTIRE21 HDR challange (single frame). To download the testing images please visit the following link: **[[Click Here](https://competitions.codalab.org/competitions/28161#participate)]**
 
-**To inference with custom setting execute the following command:**</br>
+**To inference with provided pretrained weights please execute the following commands:**</br>
 ```python main.py -i -s path/to/inputImages -d path/to/outputImages ``` </br>
 Here,**-s** specifies the root directory of the source images
  (i.e., testingImages/), and **-d** specifies the destination root (i.e., modelOutput/).
