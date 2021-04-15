@@ -56,7 +56,8 @@ The provided weights are trained as per rule of NTIRE21 HDR challange (single fr
 Here,**-s** specifies the root directory of the source images
  (i.e., testingImages/), and **-d** specifies the destination root (i.e., modelOutput/).
 
-
+# LDR Dataset
+We have collected a LDR dataset captured with different camera hardwares. Feel free to use our LDR dataset in your respective work. The dataset can be downloaded from the following link: **[[Click Here](https://)]**
 # Contact
 For any further query, feel free to contact us through the following emails: sma.sharif.cse@ulab.edu.bd, rizwanali@sejong.ac.kr, or mithun.bishwash.cse@ulab.edu.bd
-# LDR2HDR_CVPR21
+
