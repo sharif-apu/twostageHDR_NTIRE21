@@ -29,11 +29,10 @@ from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import structural_similarity as ssim
 import torch.optim as optim
 
-class DPBS:
+class twostageHDR:
     def __init__(self, config):
         
         # Model Configration 
-        self.gtPath = config['gtPath']
         self.targetPath = config['targetPath']
         self.checkpointPath = config['checkpointPath']
         self.logPath = config['logPath']
