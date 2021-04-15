@@ -10,6 +10,12 @@
 
 # Comparison with state-of-the-art sigle-shot LDR to HDR Deep methods </br>
 
+<p align="center">
+<img width=800 align="center" src = "https://github.com/sharif-apu/twostageHDR_NTIRE21/blob/master/images/comp.png" alt="Overview"> </br>
+</p>
+
+**Figure:** Quantitative comparison between proposed method and existing learning-based single-shot LDR to HDR methods..
+
 # Prerequisites
 ```
 Python 3.8
