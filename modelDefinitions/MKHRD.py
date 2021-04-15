@@ -10,14 +10,13 @@ class ResMKHDR(nn.Module):
     def __init__(self, features = 64, kernel_size = 3,  padding = 1):
         super(ResMKHDR, self).__init__()
         #print("Model 2")
-        self.inpConv = nn.Conv2d(3,features,3,1,1)#RDBCell(features)
-        #self.inpLum = nn.Conv2d(3,features,3,1,1)
-        #self.mk1 =  multiKernelBlock(features, features)
+        self.inpConv = nn.Conv2d(3,features,3,1,1)
+
         self.norm1 =  nn.BatchNorm2d(features)
 
 
         block1 = []
-        self.block1 = RRDB(features)#nn.Sequential(*block1)
+        self.block1 = RRDB(features)
         self.attention1 = SELayer(features)
         self.attentionSpatial1 = SpatialAttentionBlock(features)
         self.noiseGate1 = nn.Conv2d(features, features, 1,1,0)
@@ -30,7 +29,6 @@ class ResMKHDR(nn.Module):
         self.attentionSpatial2 = SpatialAttentionBlock(features)
 
         self.convOut = nn.Conv2d(features,3,1,1)
-        #self.outUp = pixelShuffleUpsampling(inputFilters=3, scailingFactor=2)
         
         self.dropoutG = nn.Dropout(p=0.5)
         self.relu = nn.ReLU(inplace=True)
@@ -42,19 +40,9 @@ class ResMKHDR(nn.Module):
     
         #print(affinity.shape)
         xInp = self.inpConv(img) 
-        #xLum = self.inpLum(imgLum)
-        #xL = self.blockL(xLum) + xLum
-        
         xG = self.block1(xInp) + self.attentionSpatial1(xInp)
-        #xG = self.attention(xG) 
-        #xG = self.attentionSpatial1(xG)
 
         xG = self.block2(xG) + self.attentionSpatial2(xG)
-        #xG = self.attention1(xG) 
-        #xG = self.attentionSpatial2(xG) 
-        
-        #x1 = self.attentionSpatial1(self.attention1(self.block1(xInp) +  self.noiseGate1(xInp) )) 
-        #x2 = self.attentionSpatial2(self.attention2(self.block2(x1) + self.noiseGate2(x1))) 
 
         out = self.relu(self.convOut(xG) + img)
 
@@ -66,10 +54,10 @@ class ResMKHDR(nn.Module):
         #self.inputConvLeft.apply(init_weights)
         self.inpConv.apply(init_weights)
         
-        #self.blockL.apply(init_weights)
+
         self.block1.apply(init_weights)
         self.block2.apply(init_weights)
-        #self.blockG.apply(init_weights)
+
 
          
         self.convOut.apply(init_weights)
@@ -84,19 +72,14 @@ class HDRRangeNet(nn.Module):
         #self.mk1 =  multiKernelBlock(features, features)
         self.norm1 =  nn.BatchNorm2d(features)
 
-        self.blockG = RRDB(features, mFactor=0.5)#nn.Sequential(*blockG)
+        self.blockG = RRDB(features, mFactor=0.5)
         self.attention = SELayer(features)
         self.attentionSpatial = SpatialAttentionBlock(features)
         self.noiseGate1 = nn.Conv2d(features, features, 1,1,0)
 
-        self.block1 = RRDB(features, mFactor=0.5)#nn.Sequential(*blockG)
-        #self.attention1 = SELayer(features)
-        #self.attentionSpatial1 = SpatialAttentionBlock(features)
-        #self.noiseGate2 = nn.Conv2d(features, features, 1,1,0)
-
+        self.block1 = RRDB(features, mFactor=0.5)
 
         self.convOut = nn.Conv2d(features,3,1,1)
-        #self.outUp = pixelShuffleUpsampling(inputFilters=3, scailingFactor=2)
         
         self.dropoutG = nn.Dropout(p=0.5)
         self.relu = nn.ReLU(inplace=True)
@@ -108,17 +91,8 @@ class HDRRangeNet(nn.Module):
     
         #print(affinity.shape)
         xInp = self.inpConv(img) 
-
-        #xInp = self.attentionSpatial(xInp)
         xG = self.blockG(xInp) + self.attentionSpatial(xInp)
-        #xG = self.attention(xG) 
-        #xG = self.relu()
-
-        #xG = self.block1(xG) + xG#+ self.noiseGate2(xG)
-        #xG = self.attention1(xG) 
-        #xG = self.attentionSpatial1(xG) 
-        
-        
+    
         out = self.relu(self.convOut(xG) + img)
 
         return out #, outUp'''

@@ -40,29 +40,19 @@ def imread_uint16_png(image_path, alignratio_path):
 
 
 class customDatasetReader(Dataset):
-    def __init__(self, image_list, imagePathGT, height, width, transformation=True):
+    def __init__(self, image_list, height, width, transformation=True):
         self.image_list = image_list
-        self.imagePathGT = imagePathGT
         self.transformLR = transforms
         self.imageH = height
         self.imageW = width
         normalize = transforms.Normalize(normMean, normStd)
-
-        #self.transformHRGT = transforms.Compose([ transforms.Resize((self.imageH, self.imageW)),
-        #                                        transforms.ToTensor(),
-        #                                       normalize,
-        #                                        ])
-
     
-        self.transformRI = transforms.Compose([ #transforms.Resize((self.imageH, self.imageW)),
+        self.transformRI = transforms.Compose([ 
                                                 transforms.ToTensor(),
-                                                #normalize,
-                                                #AddGaussianNoise(pov=1.2)
                                             ])
         self.transformWN = transforms.Compose([ #transforms.Resize((self.imageH, self.imageW)),
                                                 transforms.ToTensor(),
-                                                #normalize,
-                                                #AddGaussianNoise(pov=0.8)
+                                            
                                             ])
 
     def __len__(self):
@@ -105,5 +95,5 @@ class customDatasetReader(Dataset):
         #print (self.gtImageHR.max(), self.gtImageHR.min(), self.inputImage.max(), self.inputImage.min())
         #print(self.lumImageCrop.shape)
         #print(self.inputImageCrop.shape, self.gtImageCrop.shape)
-        self.gtImageCrop = torch.clamp(self.gtImageCrop, 0, 2.5)
+        #self.gtImageCrop = torch.clamp(self.gtImageCrop, 0, 2.5)
         return self.inputImageCrop , self.gt8bitCrop, self.gtImageCrop

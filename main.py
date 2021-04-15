@@ -30,7 +30,7 @@ if __name__ == "__main__":
     if options.modelSummary:
         twostageHDR(config).modelSummary()
     if options.train:
-        twostageHDR(config).modelTraining(dataSamples=options.dataSamples)
+        twostageHDR(config).modelTraining()
     if options.retrain:
         twostageHDR(config).modelTraining(resumeTraning=True)
     if options.inference:

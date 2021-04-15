@@ -94,7 +94,6 @@ class twostageHDR:
 
         datasetReader = customDatasetReader(   
                                                 image_list=targetImageList, 
-                                                imagePathGT=self.gtPath,
                                                 height = self.imageH,
                                                 width = self.imageW,
                                             )
@@ -181,13 +180,9 @@ class twostageHDR:
 
                 # Images
                 rawInputLeft = LRImagesLeft.to(self.device)
-                #lumImage = lumImage.to(self.device)
-                #DL = DL.to(self.device)
-                #RL = RL.to(self.device)
-                #print(DL.shape)
                 highResReal = HRGTImages.to(self.device)
                 highResReal16 = HRGTImages16.to(self.device)
-                #print(rawInputLeft.shape, highResReal.shape)
+            
                 # GAN Variables
                 onesConst = torch.ones(rawInputLeft.shape[0], 1).to(self.device)
                 targetReal = (torch.rand(rawInputLeft.shape[0],1) * 0.5 + 0.7).to(self.device)
@@ -201,19 +196,20 @@ class twostageHDR:
                 highResFake = self.attentionNet(rawInputLeft)
                 highResHDR = self.HDRRec(highResFake.detach())
                 
-                if currentStep < 75000:
-                    # Optimization of generator Stage I
-                    self.optimizerEG.zero_grad()
-                    generatorContentLoss =  reconstructionLoss(highResFake, highResReal) + (1 - ssimLoss(highResFake, highResReal)  )#+ colorLoss(highResFake, highResReal)
-                    lossEG =  generatorContentLoss #+ 1e-3 * generatorAdversarialLoss 
-                    lossEG.backward()
-                    self.optimizerEG.step()
+                # Optimization of generator Stage I
+                self.optimizerEG.zero_grad()
+                generatorContentLoss =  reconstructionLoss(highResFake, highResReal) + (1 - ssimLoss(highResFake, highResReal)  )#+ colorLoss(highResFake, highResReal)
+                
+                generatorAdversarialLoss = adversarialLoss(self.discriminator(highResFake), onesConst)
+                lossEG =  generatorContentLoss + 1e-3 * generatorAdversarialLoss 
+                lossEG.backward()
+                self.optimizerEG.step()
 
                 
                 # Optimaztion of Discriminator
                 self.optimizerED.zero_grad()
-                lossED = adversarialLoss(self.discriminator(highResReal16), targetReal) + \
-                         adversarialLoss(self.discriminator(highResHDR.detach()), targetFake)
+                lossED = adversarialLoss(self.discriminator(highResReal), targetReal) + \
+                         adversarialLoss(self.discriminator(highResFake.detach()), targetFake)
                 lossED.backward()
                 self.optimizerED.step()
 
@@ -223,16 +219,9 @@ class twostageHDR:
                 #edgeLossC = colorLoss(highResFake, highResReal)
                 psnr = 10*torch.log( MAX_DIFF**2 / mseLoss(highResHDR, highResReal16) ) / log10
                 generatorContentLoss =  reconstructionLoss(highResHDR, highResReal16) + colorLoss(highResHDR, highResReal16)
-
-                generatorAdversarialLoss = adversarialLoss(self.discriminator(highResHDR), onesConst)
-                lossER =  generatorContentLoss + 1e-3 * generatorAdversarialLoss #+ (1 - ssimLoss(highResFake, highResReal)  )
+                lossER =  generatorContentLoss 
                 lossER.backward()
                 self.optimizerER.step()
-
-                # Steps for Super Convergance
-                if currentStep % 10000 == 0:
-                    self.scheduleLG.step()
-                    self.scheduleLR.step()
 
                 ##########################
                 ###### Model Logger ######
