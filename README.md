@@ -1,5 +1,14 @@
 # Two-satge LDR to HDR Image Reconstruction
 
+# Overview
+<p align="center">
+<img width=800 align="center" src = "https://user-images.githubusercontent.com/15001857/101650013-af2cf880-3a65-11eb-9f23-30e85d054011.png" alt="Overview"> </br>
+</p>
+
+**Figure:** The overview of proposed network architecture. The proposed network incorporates novel dynamic residual attention blocks, which utilizes dynamic convolution and a noise gate. Also, the network leverage the residual learning along with the learning feature correlation.
+
+
+# Comparison with state-of-the-art sigle-shot LDR to HDR Deep methods </br>
 
 # Prerequisites
 ```
