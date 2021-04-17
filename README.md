@@ -8,7 +8,6 @@ This is the official implementation of paper title "A Two-stage Deep Network for
   title={A Two-stage Deep Network for High Dynamic Range Image Reconstruction},
   author={Sharif, SMA and Naqvi, Rizwan Ali, Biswas, Mithun and Sungjun, Kim},
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
-  pages={},
   year={2021}
 }
 ```
