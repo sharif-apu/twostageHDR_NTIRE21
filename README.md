@@ -1,5 +1,5 @@
 # Two-satge LDR to HDR Image Reconstruction
-This is the official implementation of paper title "A Two-stage Deep Network for High Dynamic Range Image Reconstruction" from CVPRW21. To download full paper **[[Click Here](https://competitions.codalab.org/competitions/28161#participate)]**.
+This is the official implementation of paper title "A Two-stage Deep Network for High Dynamic Range Image Reconstruction". The paper has been accepted and expected to be published in the proceedings of CVPRW21. To download full paper **[[Click Here](https://arxiv.org/abs/2104.09386)]**.
 
 
 **Please consider to cite this paper as follows:**
