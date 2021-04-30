@@ -285,7 +285,7 @@ class twostageHDR:
             self.resultDir = outputDir
         
 
-        modelInference = inference(gridSize=self.binnigFactor, inputRootDir=self.testImagesPath, outputRootDir=self.resultDir, modelName=self.modelName, validation=validation)
+        modelInference = inference(inputRootDir=self.testImagesPath, outputRootDir=self.resultDir, modelName=self.modelName, validation=validation)
 
         testImageList = modelInference.testingSetProcessor()
         #print(testImageList, self.testImagesPath)

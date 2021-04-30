@@ -51,10 +51,9 @@ class AddGaussianNoise(object):
 
 
 class inference():
-    def __init__(self, gridSize, inputRootDir, outputRootDir, modelName, resize = None, validation = None ):
+    def __init__(self, inputRootDir, outputRootDir, modelName, resize = None, validation = None ):
         self.inputRootDir = inputRootDir
         self.outputRootDir = outputRootDir
-        self.gridSize = gridSize
         self.modelName = modelName
         self.resize = resize
         self.validation = validation
