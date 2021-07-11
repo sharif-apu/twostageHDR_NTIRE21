@@ -4,10 +4,11 @@ This is the official implementation of paper title "A Two-stage Deep Network for
 
 **Please consider to cite this paper as follows:**
 ```
-@inproceedings{sharif2021hdr,
-  title={A Two-stage Deep Network for High Dynamic Range Image Reconstruction},
-  author={Sharif, SMA and Naqvi, Rizwan Ali, Biswas, Mithun and Sungjun, Kim},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+@inproceedings{a2021two,
+  title={A two-stage deep network for high dynamic range image reconstruction},
+  author={Sharif, SMA and Naqvi, Rizwan Ali and Biswas, Mithun and Kim, Sungjun},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={550--559},
   year={2021}
 }
 ```
