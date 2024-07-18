@@ -70,7 +70,7 @@ Here,**-s** specifies the root directory of the source images
  (i.e., testingImages/), and **-d** specifies the destination root (i.e., modelOutput/).
 
 # LDR52 Dataset
-We have collected a LDR dataset captured with different camera hardwares. Feel free to use our LDR dataset in your respective work. The dataset can be downloaded from the following link: **[[Click Here](https://drive.google.com/drive/u/1/folders/1vX4rM_953pAk83vNeWheiOiLzlnysZe9)]**
+We have collected a LDR dataset captured with different camera hardwares. Feel free to use our LDR dataset for your work. The dataset can be downloaded from the following link: **[[Click Here](https://drive.google.com/drive/folders/1hODY4F4Vs4POuvogV37mw7AVRgq7xDz8?usp=sharing)]** (Updated Link)
 # Contact
-For any further query, feel free to contact us through the following emails: sma.sharif.cse@ulab.edu.bd, rizwanali@sejong.ac.kr, or mithun.bishwash.cse@ulab.edu.bd
+For any further query, feel free to contact us through the following emails: apuism@gmail.com, rizwanali@sejong.ac.kr, or mithun.bishwash.cse@ulab.edu.bd
 
